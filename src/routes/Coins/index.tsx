@@ -1,6 +1,7 @@
-import { useEffect, useState } from 'react';
-
+import { useQuery } from 'react-query';
 import { Link } from 'react-router-dom';
+
+import { getCoins } from 'api';
 
 import { Container, Header, Title, Coin, Img } from './styles';
 
@@ -15,33 +16,29 @@ interface ICoin {
 }
 
 export default function Coins() {
-  const [coins, setCoins] = useState<ICoin[]>([]);
-
-  useEffect(() => {
-    (async () => {
-      const response = await fetch('https://api.coinpaprika.com/v1/coins');
-      const coinList = await response.json();
-      setCoins(coinList.slice(0, 100));
-    })();
-  }, []);
+  const { isLoading, data } = useQuery<ICoin[]>('allCoins', getCoins);
   return (
     <Container>
       <Header>
         <Title>Coins</Title>
       </Header>
-      <ul>
-        {coins.map(({ id, name, symbol }) => (
-          <Coin key={id}>
-            <Link to={`/${id}`} state={{ name }}>
-              <Img
-                src={`https://cryptoicon-api.vercel.app/api/icon/${symbol.toLowerCase()}`}
-                alt='icon'
-              />
-              {name} &rarr;
-            </Link>
-          </Coin>
-        ))}
-      </ul>
+      {isLoading ? (
+        <h1>Loading...</h1>
+      ) : (
+        <ul>
+          {data?.slice(0, 100).map(({ id, name, symbol }) => (
+            <Coin key={id}>
+              <Link to={`/${id}`} state={{ name }}>
+                <Img
+                  src={`https://cryptoicon-api.vercel.app/api/icon/${symbol.toLowerCase()}`}
+                  alt='icon'
+                />
+                {name} &rarr;
+              </Link>
+            </Coin>
+          ))}
+        </ul>
+      )}
     </Container>
   );
 }
