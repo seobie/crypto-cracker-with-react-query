@@ -5,6 +5,8 @@ import { flexCenter } from 'styles';
 
 const Container = styled.div`
   padding: 0 2rem;
+  max-width: 48rem;
+  margin: 0 auto;
 `;
 
 const Header = styled.header`
