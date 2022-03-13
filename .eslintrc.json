@@ -38,6 +38,7 @@
   },
   "rules": {
     "react/require-default-props": 0,
+    "no-underscore-dangle": 0,
     "no-console": ["error", { "allow": ["warn", "error", "info"] }],
     "import/order": [
       // ref https://github.com/import-js/eslint-plugin-import/blob/main/README.md
