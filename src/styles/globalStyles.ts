@@ -46,7 +46,6 @@ const GlobalStyle = createGlobalStyle`
   }
   blockquote:before, blockquote:after,
   q:before, q:after {
-    content: '';
     content: none;
   }
   table {
@@ -56,13 +55,17 @@ const GlobalStyle = createGlobalStyle`
   *{
     box-sizing: border-box;
   }
-  body {
+  html{
+    font-size: 62.5%; // = 10px = 1rem
     font-family: 'Source Sans Pro', sans-serif;
+  }
+  body {
     background-color: ${({ theme }) => theme.backgroundColor};
     color: ${({ theme }) => theme.textColor};
   }
   a {
     text-decoration: none;
+    color: inherit;
   }
 `;
 

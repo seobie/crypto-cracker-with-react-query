@@ -15,7 +15,20 @@
     "resolveJsonModule": true,
     "isolatedModules": true,
     "noEmit": true,
-    "jsx": "react-jsx"
+    "jsx": "react-jsx",
+    "plugins": [
+      {
+        "name": "typescript-styled-plugin",
+        "lint": {
+          "duplicateProperties": "error",
+          "emptyRules": "error",
+          "universalSelector": "warning",
+          "zeroUnits": "error",
+          "important": "warning",
+          "float": "warning"
+        }
+      }
+    ]
   },
   "include": ["src"]
 }

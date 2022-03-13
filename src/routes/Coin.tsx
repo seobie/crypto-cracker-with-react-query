@@ -1,7 +1,18 @@
+import { ReactNode } from 'react';
+
 import { useParams } from 'react-router-dom';
 
-export default function Coin() {
+interface CoinProps {
+  children?: ReactNode;
+}
+
+export default function Coin({ children }: CoinProps) {
   const { coinId } = useParams();
 
-  return <div>Coin: {coinId}</div>;
+  return (
+    <>
+      <div>Coin: {coinId}</div>
+      {children}
+    </>
+  );
 }
